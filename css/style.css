@@ -35,7 +35,7 @@ RESPONSIVE
 \*----------------------------*/
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: open sans, Helvetica,Arial,sans-serif;
   font-size: 16px;
   color: #444;
 }
@@ -90,6 +90,34 @@ ul, ol {
   list-style: none
 }
 
+.checked{
+  color: orange;
+}
+.course {
+
+  position: relative;
+  background-image: url("/img/back.jpg");
+  text-align: center;
+}
+.widget{
+  padding-top:20px;
+  padding-bottom: 20px;
+}
+.side-widget{
+  margin-bottom: 30px;
+  text-align: center;
+  border: 2px solid #eee;
+}
+.side-body{
+  padding: 20px;
+}
+.side-title{
+  /*font-weight: 200;*/
+  font-size: 26px;
+}
+.box:hover {
+  box-shadow: 0 0 11px rgba(33,33,33,.2); 
+}
 .avatar {
   border: 0.3rem solid rgba(#fff, 0.3);
   margin-top: -6rem;
@@ -97,7 +125,42 @@ ul, ol {
   max-width: 9rem;
 }
 
+.box{
+  padding: 30px;
+}
 
+.accordion {
+  border-radius: 10px;
+  background-color: #edeff7;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+
+
+
+.accordion:after {
+  content: '\002B';
+  color: #777;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
 
 
 #app-container{
@@ -140,7 +203,7 @@ ul, ol {
   margin: 0 0 10px;
 }
 
-/*cards*/
+/*cards
 @import url(https://fonts.googleapis.com/css?family=Lato:400,700,900);
 *, *:before, *:after {
   box-sizing: border-box;

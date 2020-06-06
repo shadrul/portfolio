@@ -28,32 +28,117 @@
 //         }
 
 // }]);
-app.controller('MainCtrl', function( $state, stars){
+
+app.controller('NavCtrl', function($scope, Auth, $localStorage, $state){
+  $scope.logout = function(){
+      console.log("loghoyut");
+      Auth.$signOut().then(function(){
+       $localStorage.logged ='';
+       $state.go('main'); 
+      });
+    };
+});
+
+
+app.controller('MainCtrl', function($rootScope, $localStorage, $state, stars, courses, checkauth, Users, Auth){
   
   var mainCtrl = this;
-
+  $localStorage.logged = checkauth;
+  $rootScope.islogged = $localStorage.logged;
+  console.log(mainCtrl.islogged);
   mainCtrl.starlist = stars;
+  mainCtrl.courselist = courses;
+  mainCtrl.logout = function(){
+      console.log("loghoyut");
+      Auth.$signOut().then(function(){
+       $$localStorage.logged ='';
+       $state.reload(); 
+      });
+    };
+  // mainCtrl.username = Users.getDisplayName(mainCtrl.islogged);
 
+ 
+});
+
+app.controller('CourseCtrl', function($rootScope, $localStorage, $state, $stateParams, courses, checkauth, Auth){
   
+  var courseCtrl = this;
+  $rootScope.islogged = $localStorage.logged;
+  // courseCtrl.islogged = checkauth;
+  courseCtrl.courselist = courses;
+  angular.forEach(courseCtrl.courselist, function(course){
+    if(course.title == $stateParams.courseName){
+      console.log(course.$id);
+    }
+  });
   
-
-
 
 });
-app.controller('AuthCtrl', [ '$state','Auth', function( $state, Auth){
+app.controller('CheckoutCtrl', function($rootScope,$localStorage, $state, $stateParams, courses, Auth){
+  
+  var checkoutCtrl = this;
+  $rootScope.islogged = $localStorage.logged;
+  checkoutCtrl.courselist = courses;
+  angular.forEach(checkoutCtrl.courselist, function(course){
+    if(course.title.toUpperCase() == $stateParams.courseName.toUpperCase()){
+      checkoutCtrl.course = course;
+    } 
+  });
 
+});
+
+// To fill data in the courses list
+
+// app.controller('AdminCtrl', function( $state, courses){
+//   var adminCtrl = this;
+//   adminCtrl.courses = courses;
+
+//   adminCtrl.fillData = function(){
+//       adminCtrl.courses.$add(adminCtrl.course).then(function(ref){
+//         console.log(adminCtrl.courses);
+//         adminCtrl.course ={
+//           title:"",
+//           description :""
+//         };
+//       });
+//     };
+
+// });
+
+app.controller('AuthCtrl', [ '$state','Auth', function( $state, Auth){
     var authCtrl = this;
     authCtrl.user = {
       email: '',
-      password: ''
+      name: '',
+      number: ''
+    };
+    authCtrl.password = '';
+    authCtrl.signup = function(){
+      Auth.$createUserWithEmailAndPassword(authCtrl.user.email, authCtrl.password).then(function (auth){
+        authCtrl.user.loggedin = true;
+        console.log("Created" + auth.uid + "successfully");
+        var user_ref = firebase.database().ref('UserInfo/' + auth.uid);
+        user_ref.set(
+          authCtrl.user
+        ).then(function(){
+          $state.go('main');
+          
+        });
+         
+
+      }, function(error){
+        authCtrl.error = error;
+      })
     };
     authCtrl.login = function (){
-      Auth.$signInWithEmailAndPassword(authCtrl.user.email, authCtrl.user.password).then(function (auth){
-        $state.go('home');
+      Auth.$signInWithEmailAndPassword(authCtrl.login.email, authCtrl.login.password).then(function (auth){
+        $state.go('main');
       }, function (error){
         authCtrl.error = error;
       });
     };
+
+
 
 }]);
 // app.controller('HomeCtrl', [ '$state','Auth', function( $state, Auth){

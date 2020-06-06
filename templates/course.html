@@ -1,0 +1,124 @@
+<head>
+	<style >
+	
+	.active, .accordion:hover {
+	  background-color: #ccc;
+	}
+	.active:after {
+	  content: "\2212";
+	}
+
+</style>
+</head>
+<body>
+
+<ng-include src="'templates/includes/header1.html'"></ng-include>
+
+	<div class="jumbotron jumbotron-fluid course" >
+	  <div class="container" style="padding-top: 70px;">
+	    <h1 class="display-4" style="color: #fff">GATE</h1>
+	    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+	  </div>
+	</div>
+	<div class="container-fluid	">
+	  <div class="row widget">
+	    <div class="col-md-9">
+	    	<h2>Gate</h2>
+	    	<span class="fa fa-star checked"></span>
+			<span class="fa fa-star checked"></span>
+			<span class="fa fa-star checked"></span>
+			<span class="fa fa-star checked"></span>
+			<span class="fa fa-star checked"></span>
+		    
+		    <div>
+			    <iframe style="width: 100%; height: 500px;" 
+				src="https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1">
+				</iframe> 
+			</div>
+			<div class="box" style="border: 2px solid #eee; margin-top: 30px;">
+				<h2>Overview</h2>
+				<button class="accordion">Aptitude</button>
+				<div class="panel">
+				  <p>Number system, Averages, Ratio and Proportion, Percentages, Time and distance, Mixture and allegation, Permutation and Combination, Probability, Algebra, Time & Work and much more.</p>
+				</div>
+
+				<button class="accordion">Logical Reasoning & Data Interpretation</button>
+				<div class="panel">
+				  <p>Coding- Decoding, Series, Puzzles, Direction and Ranking, Syllogism, Clock & Calendar, Assumption, Argument, Conclusion, Course of action, Cause n Effect and many more topics to cover.</p>
+				</div>
+
+				<button class="accordion">Technical</button>
+				<div class="panel">
+				  <p>C & C++, Data Structure and learn about Automata and Automata Fix. Automata is candidate skill evaluation on their knowledge of data structures, algorithms, memory allocation, etc. Automata Fix checks for programmers ability to debug an erroneous code and fix it.</p>
+				</div>
+				<button class="accordion">English</button>
+				<div class="panel">
+				  <p>Make a strong boost up in your Soft Skills, Communication ability. Your Vocabulary has to be increased so as to be ready for Unseen passage, Email writing and Essay.</p>
+				</div>
+				<button class="accordion">Employability Test</button>
+				<div class="panel">
+				  <p>It helps organizations screen the right candidates and match them to the right job roles. We have AMCAT, CoCubes and eLitmus employability testing facility at our place.</p>
+				</div>
+				<button class="accordion">Group Discussion / Personal Interview</button>
+				<div class="panel">
+				  <p>A healthy discussion and to the point discussion leads to conclusion fast. Without going through personal interview no one shall be able to enter any company. Get trained.</p>
+				</div>
+			</div>
+			<div class="box mentor" style="border: 2px solid #eee; margin-top: 30px;">
+				<h2>Instructor</h2>
+				<div class="row" style="padding: 20px;">
+					<div class="col-md-2">
+						<img src="https://www.imgjbp.online/images/team/SameerSir.jpg" class="img-circle" width="96" height="96">
+					</div>
+					<div class="col-md-10" style="font-style: italic;">
+						<h4>Sameer Shrivastava (Doctor of Computer Science) </h4>
+						Renowned and expert in their subjects, more than 20 years of teaching experience and more over ready to help attitude at any time which makes them loveable among the students. 
+					</div>
+				</div>				
+			</div>
+		</div>
+	    <div class="col-md-3">
+	    	<div class="card side-widget box " >
+			  <div class="card-body side-body">
+			    <h5 class="card-title side-title" >Core Java</h5>
+			    <h6 class="card-subtitle mb-2 text-muted" style="font-size: 18px;">₹ 3500</h6>
+			    <button class="btn btn-outline	 btn-lg" style="width: 100%; background-color: #ff1053; border-radius: 25px; color: #fff;" ui-sref="checkout({courseName : 'Gate'})">Buy Now</button>
+			  </div> 
+			</div>
+			<div class="card  box " style=" border: 2px solid #eee; margin-bottom: 30px;" >
+			  <div class="card-body side-body">
+			    <h5 class="card-title side-title" style="text-align: center;" >Course Features</h5>
+			    <h6 class="card-subtitle mb-2 text-muted" style="font-size: 20px; text-align: center;">Includes</h6>
+			    <h6 class="card-subtitle mb-2 " style="font-size: 18px; padding-top: 5px; padding-bottom: 5px;"><i style="margin-right: 10px;" class="fa fa-play-circle"></i>Videos</h6>
+			    <h6 class="card-subtitle mb-2 " style="font-size: 18px; padding-top: 5px; padding-bottom: 5px; "><i style="margin-right: 10px;" class="fa fa-signal"></i>Live Classes</h6>
+			    <h6 class="card-subtitle mb-2 " style="font-size: 18px; padding-top: 5px; padding-bottom: 5px;"><i style="margin-right: 10px;" class="fa fa-book"></i>Notes</h6>
+			    <h6 class="card-subtitle mb-2 " style="font-size: 18px; padding-top: 5px; padding-bottom: 5px;"><i style="margin-right: 10px;" class="fa fa-question"></i>Doubts</h6>
+			    <h6 class="card-subtitle mb-2 " style="font-size: 18px; padding-top: 5px; padding-bottom: 5px;"><i style="margin-right: 10px;" class="fa fa-certificate"></i>Certification</h6>
+			  </div> 
+			</div>
+	    </div>
+	  </div>
+
+	</div>
+
+
+<ng-include src="'templates/includes/footer.html'"></ng-include>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  });
+}
+</script>
+
+</body>

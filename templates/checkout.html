@@ -1,0 +1,19 @@
+<ng-include src="'templates/includes/header1.html'"></ng-include>
+
+	<div class="jumbotron jumbotron-fluid course" >
+	  <div class="container" style="padding-top: 70px;">
+	    <h1 class="display-4" style="color: #fff">{{checkoutCtrl.course.title}}</h1>
+	    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+	  </div>
+	</div>
+	<div class="box" style="width: 333px; margin-right: auto;margin-left: auto;">
+		<div class="card-title">
+			{{checkoutCtrl.course.price}}
+		</div>
+		<div>
+			<button class="btn btn-primary">Place Order</button>
+		</div>
+		
+	</div>
+
+<ng-include src="'templates/includes/footer.html'"></ng-include>

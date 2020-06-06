@@ -1,10 +1,4 @@
-
-
-
-
-
-
-var app = angular.module('demo', ['ui.router','firebase','angular-md5']);
+var app = angular.module('demo', ['ui.router','firebase','angular-md5', 'angular-loading-bar', 'ngStorage']);
 
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
 
@@ -16,12 +10,76 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
         templateUrl:'templates/main.html',
         controller: 'MainCtrl as mainCtrl',
         resolve: {
-          stars: function (Stars){
-          return Stars.$loaded();
-        }
+          checkauth: function($state, Auth, Users){
+             return Auth.$requireSignIn().then(function(auth){
+              console.log(auth.uid);
+              return Users.all.$loaded().then(function(){
+                return Users.getDisplayName(auth.uid);
+              });
+             }, function(error){
+              return;
+             });
+          },
+          stars: function ($state, Main){
+            return getStars().$loaded();
+          },
+          courses: function($state, Main){
+            return getCourses().$loaded();
+          }
       }
        
     })
+    .state('course', {
+        url:'/courses/:courseName',
+        templateUrl:'templates/course.html',
+        controller: 'CourseCtrl as courseCtrl',
+        resolve: {
+          checkauth: function($state, Auth, Users){
+             return Auth.$requireSignIn().then(function(auth){
+              console.log(auth.uid);
+              return Users.all.$loaded().then(function(){
+                return Users.getDisplayName(auth.uid);
+              });
+             }, function(error){
+              return;
+             });
+          },
+          courses: function($state, Main){
+            return getCourses().$loaded();
+          }
+        }
+       
+    })
+    .state('checkout', {
+        url:'/courses/:courseName/checkout',
+        templateUrl:'templates/checkout.html',
+        controller: 'CheckoutCtrl as checkoutCtrl',
+        resolve: {
+          auth: function($state, Users, Auth){
+          return Auth.$requireSignIn().catch(function(){
+            $state.go('login');
+          });
+         },
+          courses: function($state, Main){
+            return getCourses().$loaded();
+          }
+        }
+       
+    })
+    // Admin Route
+
+    // .state('admin', {
+    //     url:'/admin',
+    //     templateUrl:'templates/admin.html',
+    //     controller: 'AdminCtrl as adminCtrl',
+    //     resolve: {
+    //       courses: function (Fill){
+    //       return Fill.$loaded();
+    //     }
+    //   }
+       
+    // })
+
     // $stateProvider
     // .state('dashboard', {
     //     url:'/dashboard',
