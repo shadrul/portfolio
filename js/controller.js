@@ -1,206 +1,177 @@
-// app.run(['$rootScope', '$location', '$cookies', '$state', '$window', function($rootScope, $location, $cookies, $state,$window){
-//         $rootScope.username = '';
 
-//         var isuser = false;        
-
-//         if($cookies.get('username')){
-            
-//             console.log("user")
-//             isuser = true;
-//         }else{
-//             console.log("not isn user");
-//             isuser = false;
-//         }
-
-//         console.log($location.path());
-        
-//         if(isuser){
-//             console.log(isuser);
-//             if($location.path()=='/'){
-//                   $location.path('main/home');
-//                 // $window.location.reload('main/home');
-//             }else{
-//                 $location.path($location.path());
-//             }
-            
-//         }else{
-//             $location.path('/');
-//         }
-
-// }]);
-
-app.controller('NavCtrl', function($scope, Auth, $localStorage, $state){
-  $scope.logout = function(){
-      console.log("loghoyut");
-      Auth.$signOut().then(function(){
-       $localStorage.logged ='';
-       $state.go('main'); 
-      });
-    };
-});
-
-
-app.controller('MainCtrl', function($rootScope, $localStorage, $state, stars, courses, checkauth, Users, Auth){
+app.controller('MainCtrl', function($rootScope, $localStorage, $state, Main){
   
   var mainCtrl = this;
-  $localStorage.logged = checkauth;
-  $rootScope.islogged = $localStorage.logged;
-  console.log(mainCtrl.islogged);
-  mainCtrl.starlist = stars;
-  mainCtrl.courselist = courses;
-  mainCtrl.logout = function(){
-      console.log("loghoyut");
-      Auth.$signOut().then(function(){
-       $$localStorage.logged ='';
-       $state.reload(); 
-      });
-    };
+  mainCtrl.experiences = [{"id": 1,"organization":"","role":"","from":"","to":"","description":""}];
+  mainCtrl.projects = [{"id": 1,"title":"","description":"","link":""}];
+  mainCtrl.educations = [{"id": 1,"college":"","degree":"","from":"", "to":"","description":""}];
+  mainCtrl.exp_index = mainCtrl.experiences.length;
+  mainCtrl.pro_index = mainCtrl.projects.length;
+  mainCtrl.edu_index = mainCtrl.educations.length;
+
+  mainCtrl.addNewChoice = function(x) {
+    if(x=='e'){
+    var newItemNo = ++mainCtrl.exp_index;
+    mainCtrl.experiences.push({'id':newItemNo,"organization":"","role":"","from": "","to": "","description":""});
+    }
+    else if(x=='p'){
+      var newItemNo = ++mainCtrl.pro_index;
+    mainCtrl.projects.push({'id':newItemNo,"title":"","description":"","link":""});
+    }
+    else if(x=='edu'){
+       var newItemNo = ++mainCtrl.edu_index;
+    mainCtrl.educations.push({'id':newItemNo,"college":"","degree":"","from":"", "to":"", "description":""});
+    }
+    
+    
+  };
+    
+  mainCtrl.removeChoice = function(id,x) {
+    if(x=='e'){
+      var index = -1;
+        var comArr = eval( mainCtrl.experiences );
+        for( var i = 0; i < comArr.length; i++ ) {
+          if( comArr[i].id === id) {
+            index = i;
+            break;
+          }
+        }
+        if( index === -1 ) {
+          alert( "Something gone wrong" );
+        }
+        mainCtrl.experiences.splice( index, 1 );
+
+    }
+    else if(x=='p'){
+      var index = -1;
+        var comArr = eval( mainCtrl.projects );
+        for( var i = 0; i < comArr.length; i++ ) {
+          if( comArr[i].id === id) {
+            index = i;
+            break;
+          }
+        }
+        if( index === -1 ) {
+          alert( "Something gone wrong" );
+        }
+        mainCtrl.projects.splice( index, 1 );
+    }
+    else if(x=='edu'){
+      var index = -1;
+        var comArr = eval( mainCtrl.educations );
+        for( var i = 0; i < comArr.length; i++ ) {
+          if( comArr[i].id === id) {
+            index = i;
+            break;
+          }
+        }
+        if( index === -1 ) {
+          alert( "Something gone wrong" );
+        }
+        mainCtrl.educations.splice( index, 1 );
+    }
+
+  
+        
+  };
+
+//   function monthDiff(d1, d2) {
+//     var months;
+//     months = (d2.getFullYear() - d1.getFullYear()) * 12;
+//     months -= d1.getMonth();
+//     months += d2.getMonth();
+//     return months <= 0 ? 0 : months;
+// }
+
+  // mainCtrl.demo = function(){
+  //   var json_data = {
+  //           'user_name': mainCtrl.user.user_name,
+  //           'first_name':mainCtrl.user.first_name,
+  //           'last_name': mainCtrl.user.last_name,
+  //           'email': mainCtrl.user.email,
+  //           'mobile': mainCtrl.user.mobile,
+  //           'about': mainCtrl.user.about,
+  //           'experiences': mainCtrl.experiences,
+  //           'projects':mainCtrl.projects,
+  //           'educations':mainCtrl.educations
+  //       }
+  //       console.log(json_data);
+  //       // console.log(monthDiff(mainCtrl.experiences[0].from, mainCtrl.experiences[0].to));
+
+  // };
+
+
+
+  mainCtrl.submit = function(){
+    var json_data = {
+            'user_name': mainCtrl.user.user_name,
+            'first_name':mainCtrl.user.first_name,
+            'last_name': mainCtrl.user.last_name,
+            'email': mainCtrl.user.email,
+            'mobile': mainCtrl.user.mobile,
+            'about': mainCtrl.user.about,
+            'experiences': mainCtrl.experiences,
+            'projects':mainCtrl.projects,
+            'educations':mainCtrl.educations
+        }
+
+        Main.submitDetails(json_data)
+        .then(function(response){
+            console.log(response);
+            $state.go('portfolio', {user_name : mainCtrl.user.user_name});
+            // if(response.data.payroll_data[0].dbName){
+            //     console.log(json_data); 
+            //     document.getElementById('compname').style.display = 'none';
+            //     document.getElementById('shadrul').style.display = 'block';
+            // }
+        }).catch(function(response){
+          console.log(response);
+
+        });
+
+
+  };
+  // $localStorage.logged = checkauth;
+  // $rootScope.islogged = $localStorage.logged;
+  // console.log(mainCtrl.islogged);
+  // mainCtrl.starlist = stars;
+  // mainCtrl.courselist = courses;
+  // mainCtrl.logout = function(){
+  //     console.log("loghoyut");
+  //     Auth.$signOut().then(function(){
+  //      $$localStorage.logged ='';
+  //      $state.reload(); 
+  //     });
+  //   };
   // mainCtrl.username = Users.getDisplayName(mainCtrl.islogged);
 
  
 });
 
-app.controller('CourseCtrl', function($rootScope, $localStorage, $state, $stateParams, courses, checkauth, Auth){
+app.controller('PortfolioCtrl', function($rootScope, $localStorage, $anchorScroll, $location, $state, getdata){
   
-  var courseCtrl = this;
-  $rootScope.islogged = $localStorage.logged;
-  // courseCtrl.islogged = checkauth;
-  courseCtrl.courselist = courses;
-  angular.forEach(courseCtrl.courselist, function(course){
-    if(course.title == $stateParams.courseName){
-      console.log(course.$id);
+  var portfolioCtrl = this;
+ portfolioCtrl.gotoDiv = function(x) {
+
+    var newHash =  x;
+
+    if ($location.hash() !== newHash) {
+
+      $location.hash( x);
+
+    } else {
+
+      $anchorScroll();
+
     }
-  });
-  
 
-});
-app.controller('CheckoutCtrl', function($rootScope,$localStorage, $state, $stateParams, courses, Auth){
-  
-  var checkoutCtrl = this;
-  $rootScope.islogged = $localStorage.logged;
-  checkoutCtrl.courselist = courses;
-  angular.forEach(checkoutCtrl.courselist, function(course){
-    if(course.title.toUpperCase() == $stateParams.courseName.toUpperCase()){
-      checkoutCtrl.course = course;
-    } 
-  });
+  };
 
+
+  console.log("hi");
+
+  portfolioCtrl.user = getdata.data;
+  console.log(portfolioCtrl.user);
 });
 
-// To fill data in the courses list
 
-// app.controller('AdminCtrl', function( $state, courses){
-//   var adminCtrl = this;
-//   adminCtrl.courses = courses;
-
-//   adminCtrl.fillData = function(){
-//       adminCtrl.courses.$add(adminCtrl.course).then(function(ref){
-//         console.log(adminCtrl.courses);
-//         adminCtrl.course ={
-//           title:"",
-//           description :""
-//         };
-//       });
-//     };
-
-// });
-
-app.controller('AuthCtrl', [ '$state','Auth', function( $state, Auth){
-    var authCtrl = this;
-    authCtrl.user = {
-      email: '',
-      name: '',
-      number: ''
-    };
-    authCtrl.password = '';
-    authCtrl.signup = function(){
-      Auth.$createUserWithEmailAndPassword(authCtrl.user.email, authCtrl.password).then(function (auth){
-        authCtrl.user.loggedin = true;
-        console.log("Created" + auth.uid + "successfully");
-        var user_ref = firebase.database().ref('UserInfo/' + auth.uid);
-        user_ref.set(
-          authCtrl.user
-        ).then(function(){
-          $state.go('main');
-          
-        });
-         
-
-      }, function(error){
-        authCtrl.error = error;
-      })
-    };
-    authCtrl.login = function (){
-      Auth.$signInWithEmailAndPassword(authCtrl.login.email, authCtrl.login.password).then(function (auth){
-        $state.go('main');
-      }, function (error){
-        authCtrl.error = error;
-      });
-    };
-
-
-
-}]);
-// app.controller('HomeCtrl', [ '$state','Auth', function( $state, Auth){
-
-    
-
-// }]);
-
-// app.controller('ProfileCtrl', function($state, md5, auth, profile){
-//     var profileCtrl = this;
-//     profileCtrl.profile = profile;
-//     profileCtrl.updateProfile = function(){
-//       profileCtrl.profile.emailHash = md5.createHash(auth.email);
-//       profileCtrl.profile.$save().then(function(){
-//         $state.go('channels');
-//       });
-//     };
-
-// });
-
-// app.controller('ChannelsCtrl', function($state, Auth, Users, profile, channels){
-//     var channelsCtrl = this;
-//     channelsCtrl.profile = profile;
-//     channelsCtrl.channels = channels;
-//     channelsCtrl.getDisplayName = Users.getDisplayName;
-//     channelsCtrl.getGravatar = Users.getGravatar;
-//     channelsCtrl.users = Users.all;
-//     Users.setOnline(profile.$id);
-//     channelsCtrl.logout = function(){
-//       channelsCtrl.profile.online = null;
-//       channelsCtrl.profile.$save().then(function(){
-//         Auth.$signOut().then(function(){
-//           $state.go('home');
-//         });
-//       });
-//     };
-//     channelsCtrl.newChannel = {
-//       name: ''
-//     };
-//     channelsCtrl.createChannel = function(){
-//       channelsCtrl.channels.$add(channelsCtrl.newChannel).then(function(ref){
-//         console.log(channelsCtrl.channels);
-//         $state.go('channels.messages', {channelId: ref.key});
-//       });
-//     };
-
-// });
-
-// app.controller('MessagesCtrl', function(profile, channelName, messages){
-//     var messagesCtrl = this;
-//     messagesCtrl.messages = messages;
-//     messagesCtrl.channelName = channelName;
-//     messagesCtrl.message = '';
-//     messagesCtrl.sendMessage = function (){
-//       if(messagesCtrl.message.length > 0){
-//         messagesCtrl.messages.$add({
-//           uid: profile.$id,
-//           body: messagesCtrl.message,
-//           timestamp: firebase.database.ServerValue.TIMESTAMP
-//         }).then(function (){
-//           messagesCtrl.message = '';
-//         });
-//       }
-//     };
-// });

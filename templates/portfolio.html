@@ -1,0 +1,346 @@
+ <!-- <!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Sarthak Singh</title>
+    <link rel="short icon" type="image/x-icon" href="/img/favicon.png">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    
+   
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head> -->
+<link rel='stylesheet' type='text/css' media='screen' href='/css/main.css'>
+<script src="https://kit.fontawesome.com/2f32e53da2.js" crossorigin="anonymous"></script>
+<body>
+
+    <!-- Side Nav bar -->
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="nav-brand">
+                    <a href="index.html">
+                        <img src="/img/logo.png" alt="sarthak">
+                    </a>
+                </div>
+                <div class="burger-menu-icon">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+
+                </div>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="" ng-click="portfolioCtrl.gotoDiv('landing-page')">
+                            <img src="https://i.pinimg.com/736x/71/9e/59/719e59481d2be40a77ab6c3386fc0a45--photoshop-illustrator-illustrator-tutorials.jpg" alt="Sarthak Singh" title="Sarthak Singh" class="profile-pic nav-link">
+                            <span class="caption nav-link" style="display:block;"> {{portfolioCtrl.user.UserData.first_name}}  {{portfolioCtrl.user.UserData.last_name}}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" ng-click="portfolioCtrl.gotoDiv('about')" class="nav-link">About me</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" ng-click="portfolioCtrl.gotoDiv('education')"class="nav-link">Education</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" ng-click="portfolioCtrl.gotoDiv('technologies')" class="nav-link">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" ng-click="portfolioCtrl.gotoDiv('projects')" class="nav-link">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" ng-click="portfolioCtrl.gotoDiv('experience')" class="nav-link">Experience</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.linkedin.com/in/sarthak-singh-310752185/"  target="_blank" class="nav-link"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                        <a href="https://github.com/SARTHAK1SINGH" target="_blank" class="nav-link"><i class="fab fa-github" aria-hidden="true"></i></a>
+                        <a href="mailto:email@gmai.com" target="_blank" class="nav-link"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+                        <a href="https://twitter.com/mesarthak03" target="_blank" class="nav-link"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                    </li>
+                    <div class="cta">
+                        <a href="#download resume" class="btn nav-link">Download Resume</a>
+                    </div>
+                </ul>
+
+            </nav>
+        </div>
+    </header>
+
+
+    <!-- main start page -->
+    <main>
+        <section id="landing-page" class="landing-page">
+            <div class="main-message" >
+                <h2>{{portfolioCtrl.user.UserData.first_name}}  {{portfolioCtrl.user.UserData.last_name}}</h2>
+                <h4>{Web-Developer | Competitive-Programer}</h4>
+                <div class="intro-btn">
+                    <div class="cta">
+                        <a href="#technologies" class="btn">Skills</a>
+                    </div>
+                    <div class="cta">
+                        <a href="#projects" class="btn">My Projects</a>
+                    </div>
+                </div>
+                <div>
+                    <a href="#about" class="scroll-down">
+                        <i class="fa fa-chevron-down" aria-hidden=" true"></i>
+                    </a>
+                </div>
+                
+            </div>
+        </section>
+
+<!-- About section -->
+        <section id="about" class="about">
+            
+            <div class="container">
+                
+                <div class="about-img">
+                    <img src="https://i.pinimg.com/736x/71/9e/59/719e59481d2be40a77ab6c3386fc0a45--photoshop-illustrator-illustrator-tutorials.jpg" alt="profile picture" class="about-pic">
+                </div>
+                <div class="about-text-box">
+                    <h2>Hello <span><i class="fas fa-hand-sparkles"></i></span></h2>
+
+                   <p>{{portfolioCtrl.user.UserData.about}}</p>
+                    <br>
+                    <a href="#download resume" ><i class="fa fa-file-text-o" aria-hidden="true"></i> Download Resume</a>
+                </div>
+            </div>
+            <hr>
+            <!-- Eductaion section -->
+        </section>
+        <br>
+        <section id="education" class="education">
+                <div class="conatiner">
+                    <div class="title-heading">
+                        <h1>Education</h1>
+                    </div>
+                    <div class="Education-tiers">
+                        <!-- replicate one of this section using loop for multiple display -->
+                        <div class="Education-tier-items" data-ng-repeat="education in portfolioCtrl.user.Educations">
+                            <i class="fa fa-university" aria-hidden="true"></i>
+                            <h2>{{education.school}}</h2>
+                            <!-- <p>Knapur, Uttar Pradesh, India</p> -->
+                            <p>{{education.degree}}</p>
+                            <p>{{education.duration}}</p>
+                            <br>
+                            <p>{{education.description}}</p>
+                            
+                        </div>
+<!-- 
+                        <div class="Education-tier-items">
+                            <i class="fa fa-university" aria-hidden="true"></i>
+                            <h2>Anil saraswati Vidya Mandir</h2>
+                            <p>Ayodhyay, Uttar Pradesh, India</p>
+                            <p>Highschool & Intermediate</p>
+                            <p>2014-2016</p>
+                            <br>
+                            <p>I studied my Highschool and Intermediate from this School and In highschool I scored 9.2-CGPA and in Intermediate i scored 81%. </p>
+                        </div>
+ -->
+                    </div>
+                </div>
+                <hr>
+        </section>
+        <br>
+        <!-- Skills section -->
+        <section id="technologies" class="services">
+
+            <div class="container">
+                <div class="title-heading">
+                    <h1>Skills</h1>
+                </div>
+                <div class="service-tiers">
+                    <!-- replicate one of this section using loop for multiple display -->
+                    <div class="tier-items">
+                        <i class="fa fa-code" aria-hidden="true"></i>
+                        <h2>Languages</h2>
+                        <p>C++, Python , C</p>
+                    </div>
+                
+
+                    <div class="tier-items">
+                        <i class="fa fa-line-chart" aria-hidden="true"></i>
+                        <h2>Development</h2>
+                       <p> HTML, CSS, Bootstrap, Javascript, PHP , Django, Node.js, Semantic UI, web.py, Web-crawler</p>
+                    </div>
+           
+
+                
+                    <div class="tier-items">
+                        <i class="fa fa-database" aria-hidden="true"></i>
+                        <h2>Database</h2>
+                        <p>XamppSQL, MongoDB, postgreSQL</p>
+                    </div>
+                    
+                    <div class="tier-items">
+                        <i class="fa fa-tachometer" aria-hidden="true"></i>
+                        <h2>Open-Source</h2>
+                        <p>
+                           GitHUB, GitLab
+                        </p>
+                    </div>
+
+                    <div class="tier-items">
+                        <i class="fa fa-tachometer" aria-hidden="true"></i>
+                        <h2>Others</h2>
+                        <p>
+                            ML & Api.Ai enthusiast <br>
+                        Data Structure and Alogrithm , Problem-Solving , Competitive-Programing
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </section>
+        <!-- projects section -->
+        <section id="projects" class="projects">
+            <div class="title-heading">
+                <h2>PROJECTS</h2>
+                <p>These are some of my recent projects</p>
+            </div>
+
+            <!-- replicate one of this section using loop for multiple display -->
+            <div class="project-item" ng-repeat="project in portfolioCtrl.user.Projects">
+                <div class="project-img has-margin-right">
+                    <img src="/img/socialwizard5.png"/>
+                </div>
+                <div class="project-description">
+                    <h2>{{project.title}}</h2>
+                    <p>{{project.desc}}.</p>
+                    <a href="{{project.link}}" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> Source Code</a>
+                </div>
+            </div>
+
+            
+
+            <hr>
+        </section>
+        <!-- Experiance section -->
+        <section id="experience" class="experiance">
+            <div class="conatiner">
+                <div class="title-heading">
+                    <h1>Experience</h1>
+                </div>
+                <div class="Education-tiers">
+                    <!-- replicate one of this section using loop for multiple display -->
+                    <div class="Education-tier-items" ng-repeat="exp in portfolioCtrl.user.Experiences	">
+                        <i class="fa fa-building" aria-hidden="true"></i>
+                        <h2>{{exp.organization}}</h2>
+                        <p>Bangalore, India</p>
+                        <p><strong>Role:</strong> {{exp.role}}</p>
+                        <p>{{exp.duration}}</p>
+                        <br>
+                        <p>{{exp.description}}</p>
+                        
+                    </div>
+
+                    <!-- <div class="Education-tier-items">
+                        <i class="fa fa-building" aria-hidden="true"></i>
+                        <h2>Jp morgon & Co.</h2>
+                        <p><strong>Role:</strong> Short term internship</p>
+                        <p>15 Days</p>
+                        <br>
+                        <p>It was internship cum training program that helped me lo learn new things like data-visualization and charts and internal working of a website.</p>
+                    </div> -->
+
+                </div>
+
+            </div>
+            <hr>
+        </section>
+
+
+        <!-- contact me section -->
+        <section id="contact" class="contact">
+            <h2>GET IN TOUCH</h2>
+            <p>Wanna work with me.... Awesome</p>
+            <div class="container">
+                <p>
+                    <a href="mailto:{{portfolioCtrl.user.UserData.email}}"><i class="fas fa-envelope"></i> Gmail</a>
+                </p>
+                <p>
+                    <a href="https://www.linkedin.com/in/sarthak-singh-310752185/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                </p>
+                <p>
+                    <a href="https://github.com/SARTHAK1SINGH" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                </p>
+            </div>
+            <hr>
+        </section>
+
+        <!-- footer section -->
+        <footer>
+            <div class="footer-nav">
+                <a href="" ng-click="portfolioCtrl.gotoDiv('landing-page')" class="footer-nav-link">Home</a>
+                <a href="" ng-click="portfolioCtrl.gotoDiv('about')" class="footer-nav-link">About</a>
+                <a href="" ng-click="portfolioCtrl.gotoDiv('education')" class="footer-nav-link">Education</a>
+                <a href="" ng-click="portfolioCtrl.gotoDiv('technologies')" class="footer-nav-link">Skills</a>
+                <a href="" ng-click="portfolioCtrl.gotoDiv('projects')" class="footer-nav-link">Projects</a>
+                <a href="" ng-click="portfolioCtrl.gotoDiv('experience')" class="footer-nav-link">Experiance</a>
+            </div>
+            <div class="footer-coded-by">
+                <p><i class="fas fa-code"></i> Developed by Shadrul & Sarthak With <i class="fas fa-magic"></i> Magic <i class="far fa-copyright"></i> 2020</p>
+            </div>
+            <div class="footer-social">
+                <a href="mailto:{{portfolioCtrl.user.UserData.email}}"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.linkedin.com/in/sarthak-singh-310752185/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://twitter.com/mesarthak03" target="_blank"><i class="fab fa-twitter"></i></a>
+
+            </div>
+        </footer>
+
+    </main>
+
+
+    <script type="text/javascript">
+	// fonction to select item
+
+const selectElement = (s) => document.querySelector(s);
+const navlinks = document.querySelectorAll(".nav-link");
+
+selectElement(".burger-menu-icon").addEventListener("click",() =>{
+    selectElement(".nav-list").classList.toggle("active");
+    selectElement(".burger-menu-icon").classList.toggle("toggle");
+
+    navlinks.forEach((link, index) => {
+        if(link.style.animation)
+        {
+            link.style.animation = ""
+        }
+        else
+        {
+            link.style.animation = `navLinkAnimate 0.5s ease forwards ${ index/7 + 0.5 }s`
+        }
+
+    })
+
+});
+
+navlinks.forEach(link =>{
+    link.addEventListener("click", () =>{
+        selectElement(".nav-list").classList.toggle("active");
+        selectElement(".burger-menu-icon").classList.toggle("toggle");
+
+        navlinks.forEach((link, index) => {
+            if(link.style.animation)
+            {
+                link.style.animation = ""
+            }
+            else
+            {
+                link.style.animation = `navLinkAnimate 0.5s ease forwards ${ index/7 + 0.5 }s`
+            }
+    
+        })
+    })
+})
+
+
+</script>
+
+</body>
+</html>

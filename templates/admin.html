@@ -1,7 +1,17 @@
-<form ng-submit="adminCtrl.fillData()">
-  <div class="input-group">
-    <input type="text" class="form-control" placeholder="Channel Name" ng-model="adminCtrl.course.title">
-    <input type="text" class="form-control" placeholder="Channel Name" ng-model="adminCtrl.course.description">
-  </div>
-  <button ng-click="fillData()">Submit</button>
-</form>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/8.4.6/css/intlTelInput.css">
+</head>
+<body>
+	<input type="tel" name="phone">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/8.4.7/js/intlTelInput.js"></script>
+
+<script>
+var input = document.querySelector("#phone");
+window.intlTelInput(input);
+</script>
+</body>
+</html>

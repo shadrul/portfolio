@@ -1,228 +1,291 @@
-<ng-include src="'templates/includes/header.html'"></ng-include>
+<style >
+	.fas,.far{
+		color: #0000ff;
+	}
+	.box{
+      box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 6px 0 rgba(0, 0, 0, 0.19);
+	}
 
-<!-- main -->
-<div id="home">
-	<!-- background image -->
-	<div class="section-bg" style="background-image:url(/img/back.jpg)" data-stellar-background-ratio="0.5"></div>
-	<!-- /background image -->
 
-	<!-- home wrapper -->
-	<div class="home-wrapper">
-		<!-- container -->
-		<div class="container">
-			<!-- row -->
-			<div class="row" >
-				<!-- home content -->
 
-				<div class="col-md-8 col-md-offset-2">
-					<div class="home-content">
-						<h1>Ideal management Group</h1>
-						<h4 class="lead">A place to improve your techniques.</h4>
-						<button  type="button" class="btn btn-lg btn-outline-light rounded">Contact</a></button>
-						
-					</div>
-				</div>
-				<!-- /home content -->
-			</div>
-			<div class="row"  >
-				<!-- home content -->
-				<div class="col-md-3 col-lg-3">
-					<div class="item">
-						<img src="img/raise.png">
-						<h4 class="title">Learn from the experts.</h4>
-					</div>
-				</div>
-				<div class="col-md-3 col-lg-3">
-					<div class="item">
-						<img src="img/raise.png">
-						<h4 class="lead">A place to improve your techniques.</h4>
-					</div>
-				</div>
-				<div class="col-md-3 col-lg-3">
-					<div class="item">  
-						<img src="img/raise.png">
-						<h4 class="lead">A place to improve your techniques.</h4>
-					</div>
-				</div>
-				<div class="col-md-3 col-lg-3">
-					<div class="item">
-						<img src="img/raise.png">
-						<h4 class="lead">A place to improve your techniques.</h4>
-					</div>
-				</div>
-				<!-- /home content -->
-			</div>
-			<!-- /row -->
-		</div>
-		<!-- /container -->
-	</div>
-	<!-- /home wrapper -->
-</div>
-<!-- /main -->
+</style>
+<div class="container py-5" >
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <form ng-submit="mainCtrl.submit()">
+            	<section class="box py-4 px-5" style="margin-bottom: 10px;">
+            		<h3 class="text-center">User Info</h3>
+                <div class="form-group row">
+                	  <div class="col-md-6">
+                	  		<label for="inputAddressLine1">User Name</label>
+						  	<div class="input-group  "> 
+						  	
+						    <div class="input-group-prepend">
+						      <span class="input-group-text"><i class="fas fa-user"></i></span>
+						    </div>
+						    <input type="text" class="form-control" placeholder="Username"
+						    ng-model = "mainCtrl.user.user_name">
+						  </div>
+					  </div>
+					  
+					  <div class="col-md-6">
+                	  		<label for="inputAddressLine1">Email</label>
+						  	<div class="input-group  "> 
+						  	
+						    <div class="input-group-prepend">
+						      <span class="input-group-text" style="color: #0000ff">@</span>
+						    </div>
+						    <input type="email" class="form-control" placeholder="Email" ng-model = "mainCtrl.user.email">
+						  </div>
+					  </div>
+                </div>
 
-<!-- courses -->
-<section id="courses" class="section container">
-	<div class="section-title">
-		<h3 class="title"><span style="color: #dd0a37";> Our </span> <span style="color: #dd0a37;">Courses</span></h3>
-	</div>
-	<div class="row ">
-		
-	    <div class="wrapper col-lg-4 col-md-4 col-sm-4 text-center" style="height: 600px !important;" ng-repeat="course in mainCtrl.courselist">
-		    <a class="clash-card giant" ui-sref="course({courseName: course.title})">
-		      <div class="clash-card__image clash-card__image--giant">
-		        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/giant.png" alt="giant" />
-		      </div>
-		      <div class="clash-card__level clash-card__level--giant">Level 1</div>
-		      <div class="clash-card__unit-name">{{course.title}}</div>
-		      <div class="ion: clash-card__unit-description"> 
-		        {{course.description}}
-		      </div>
+                <div class="form-group row">
+                	  <div class="col-md-3">
+                	  		<label for="inputAddressLine1">First Name</label>
+						  	<div class="input-group  "> 
+						  	
+						    <div class="input-group-prepend">
+						      <span class="input-group-text"><i class="fas fa-user" ></i></span>
+						    </div>
+						    <input type="text" class="form-control" placeholder="First Name" ng-model = "mainCtrl.user.first_name">
+						  </div>
+					  </div>
+					  
+					  <div class="col-md-3">
+                	  		<label for="inputAddressLine1">Last Name</label>
+						  	<div class="input-group"> 
+						  	
+						    <div class="input-group-prepend">
+						      <span class="input-group-text"><i class="fas fa-user"></i></span>
+						    </div>
+						    <input type="text" class="form-control" placeholder="Last Name" ng-model = "mainCtrl.user.last_name">
+						  </div>
+					  </div>
+					  <div class="col-md-6">
+	            	  		<label for="inputAddressLine1">Mobile Number</label>
+						  	<div class=" input-group "> 
+						    <div class="input-group-prepend">
+						      <span class="input-group-text"><i class="fas fa-mobile"></i></span>
+						    </div>
+						    <input type="tel" class="form-control" placeholder="Mobile Number" ng-model = "mainCtrl.user.mobile">
+						    
+						  </div>
+					  </div>
+                </div>
+	            <div class="form-group row">
+        	 		
+        	 		<div class="col-md-12">
+        	  			<label for="inputAddressLine1">About You</label>
+				  	
+					    <textarea name="about"class="form-control" rows="5" cols="99" required placeholder="Write a short summary to describe yourself(150 words max)" maxlength="1000" ng-model = "mainCtrl.user.about"></textarea> 
+				  	</div>
+			  
+	            </div>
+	            </section>
+	            <section>
+	            	
+	            	<div data-ng-repeat="exp in mainCtrl.experiences" class=" box py-4 px-5">
+	            		<h3 class="text-center">Experience {{exp.id}}</h3>
+	            		<div class="form-group row ">
+	            			<div class="col-md-6">
+		                	  	<label for="inputAddressLine1">Organization</label>
+								  	<div class="input-group  "> 
+								  	
+								    <div class="input-group-prepend">
+								      <span class="input-group-text"><i class="fas fa-building"></i></span>
+								    </div>
+								    <input type="text" class="form-control" placeholder="Organization/Company"
+								    ng-model = "exp.organization">
+								  	</div>
+							  	</div>
+							  
+							  	<div class="col-md-6">
+		                	  		<label for="inputAddressLine1">Role</label>
+								  	<div class="input-group  "> 
+								  	
+								    <div class="input-group-prepend">
+								      <span class="input-group-text" ><i class="fas fa-user"></i></span>
+								    </div>
+								    <input type="text" class="form-control" placeholder="role" ng-model = "exp.role">
+								</div>
+							</div>
+	            		</div>
+	            		<div class="form-group row">
+		            		<div class="col-md-3">
+	                	  		<label for="inputAddressLine1">From</label>
+							  	<div class="input-group  "> 
+							  	
+							    <div class="input-group-prepend">
+							      <span class="input-group-text"><i class="far fa-calendar"></i></span>
+							    </div>
+							    <input type="date" class="form-control" ng-model = "exp.from">
+								  </div>
+							</div>
+							  
+							<div class="col-md-3">
+		                	  		<label for="inputAddressLine1">To</label>
+								  	<div class="input-group"> 
+								  	
+								    <div class="input-group-prepend">
+								      <span class="input-group-text"><i class="far fa-calendar"></i></span>
+								    </div>
+								    <input type="date" class="form-control" ng-model = "exp.to">
+								</div>
+							</div>
+							<div class="col-md-6">
+		        	  			<label for="inputAddressLine1">Description</label>
+						  	
+							    <textarea name="description" class="form-control" rows="3" cols="46"placeholder="Write a short summary to describe your role(100 words max)" maxlength="400" ng-model = "exp.description"></textarea> 
+						  	</div>
 
-		      <!-- <div class=" clash-card__unit-stats clash-card__unit-stats--giant clearfix">
-		        <div class="one-third">
-		          <div class="stat">3<sup>months</sup></div>
-		          <div class="stat-value">Training</div>
-		        </div>
-
-		        <div class="one-third">
-		          <div class="stat">{{course.price}}</div>
-		          <div class="stat-value">Price</div>
-		        </div>
-
-		        <a href="#" class="one-third no-border streched-link">
-		          <div class="stat">Buy Now</div>
-		           <div class="stat-value">Cost</div> -->
-		       <!--  </a>
-		      </div> --> 
-
-		    </a> <!-- end clash-card giant-->
-  		</div> <!-- end wrapper -->
-  		<div class="clearfix"></div>
-	    
-	</div>
-
-</section>
-
-<!-- app -->
-<!-- <section id="app-container" class="section" >
-	<div class=" overlay ">
-		<div class="row">
-			<div class="col-md-6">
-				<div class="widget-content">
-					<div class="widget-wrap">
-						<div class="widget-action">
-							<h2 class="widget-title">Download and Enjoy</h2>
-							<h5>Access your courses anywhere, anytime & prepare with practice tests</h5>
 						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+						<button type="button" class="btn btn-primary px-4 float-right" ng-click="mainCtrl.removeChoice(exp.id,'e')" ng-if="exp.id!=mainCtrl.exp_index">-</button>
+						<button type="button" class="btn btn-primary px-4 float-right" ng-click="mainCtrl.addNewChoice('e')" ng-if="exp.id===mainCtrl.exp_index">+</button>
+						<br clear="both">
+	            	</div>
 
-	
-</section> -->
+	            </section>
 
+	            <section>
+	            	
+	            	<div data-ng-repeat="project in mainCtrl.projects" class=" box py-4 px-5">
+	            		<h3 class="text-center">Project {{project.id}}</h3>
+	            		<div class="form-group row ">
+	            			<div class="col-md-6">
+	            				<div class="row">
+	            					<div class="col-md-12">
+				                	  	<label for="inputAddressLine1">Title</label>
+									  	<div class="input-group  "> 
+									  	
+									    <div class="input-group-prepend">
+									      <span class="input-group-text"><i class="far fa-lightbulb"></i></span>
+									    </div>
+									    <input type="text" class="form-control" placeholder="Title"
+									    ng-model = "project.title">
+									  	</div>
+								  	</div>
+								  	<div class="col-md-12">
+									  	<label for="inputAddressLine1">Link</label>
+									  	<div class="input-group  "> 
+									  	
+									    <div class="input-group-prepend">
+									      <span class="input-group-text"><i class="fas fa-link"></i></span>
+									    </div>
+									    <input type="text" class="form-control" placeholder="Link"
+									    ng-model = "project.link">
+									  	</div>
+								  	</div>
+							  	</div>
+							</div>
+							  
+						  	<div class="col-md-6">
+	                	  		
+				  	
+							    <label for="inputAddressLine1">Description</label>
+						  	
+							    <textarea name="about"class="form-control" rows="4" cols="99" required placeholder="short description of your project" maxlength="1000" ng-model = "project.description"></textarea> 
+							</div>
+	            		</div>
+						<button type="button" class="btn btn-primary px-4 float-right" ng-click="mainCtrl.removeChoice(project.id,'p')" ng-if="project.id!=mainCtrl.pro_index">-</button>
+						<button type="button" class="btn btn-primary px-4 float-right" ng-click="mainCtrl.addNewChoice('p')" ng-if="project.id===mainCtrl.pro_index">+</button>
+						<br clear="both">
+	            	</div>
 
-<section id="stars" class="section container" >
-	<div class="section-title">
-		<h3 class="title"><span style="color: #dd0a37; padding-top: -90px"> Our </span> <span style="color: #dd0a37;">Stars</span></h3>
-	</div>
-	<div class="owl-carousel owl-theme" style="background-color: #fff !important;">
-		    <div class="item " ng-repeat="star in mainCtrl.starlist">
-		    	<div class="card"  >
-			        <img class="card-img-top" src ="img/black-bg.jpg" alt="Bologna">
-			        <div class="card-body text-center">
-			          <img class="avatar img-circle" src={{star.image}} alt="Bologna" width="90" height="90">
-			          <h4 class="card-title">{{star.name}}</h4>
-			          <h6 class="card-subtitle mb-2 text-muted">{{star.session}}</h6>
-			          <p class="card-text">{{star.company}} </p>
-			          <a href="#" class="btn btn-info">Follow</a>
-			          <a href="#" class="btn btn-outline-info">Message</a>
-			        </div>
-		      </div>
-		    </div>
-	</div>	
-</section>
+	            </section>
 
-<!-- Contact -->
-<div id="contact" class="section" style="background-color: #f9fafc">
-    <!-- container -->
-<div class="container">
-  <!-- row -->
-  <div class="row">
-    <!-- section title -->
-    <div class="section-title">
-      <h3 class="title"><span style="color: #000;">Contact</span> <span style="color: #000;">Info</span></h3>
+	             <section>
+	            	
+	            	<div data-ng-repeat="education in mainCtrl.educations" class=" box py-4 px-5">
+	            		<h3 class="text-center">Education {{education.id}}</h3>
+	            		<div class="form-group row ">
+	            			<div class="col-md-6">
+	            				
+	            					
+		                	  	<label for="inputAddressLine1">College</label>
+							  	<div class="input-group  "> 
+							  	
+							    <div class="input-group-prepend">
+							      <span class="input-group-text"><i class="fas fa-building"></i></span>
+							    </div>
+							    <input type="text" class="form-control" placeholder="college/school"
+							    ng-model = "education.college">
+							  	</div>
+						  	</div>
+						  	<div class="col-md-6">
+							  	<label for="inputAddressLine1">Degree</label>
+							  	<div class="input-group  "> 
+							  	
+							    <div class="input-group-prepend">
+							      <span class="input-group-text"><i class="fas fa-link"></i></span>
+							    </div>
+							    <input type="text" class="form-control" placeholder="degree name"
+							    ng-model = "education.degree">
+							  	</div>
+						  	</div>
+					  	
+						</div>
+						<div class="form-group row">
+							<div class="col-md-3">
+	                	  		<label for="inputAddressLine1">From</label>
+							  	<div class="input-group  "> 
+							  	
+							    <div class="input-group-prepend">
+							      <span class="input-group-text"><i class="far fa-calendar"></i></span>
+							    </div>
+							    <input type="date" class="form-control" ng-model = "education.from">
+								  </div>
+							</div>
+							  
+							<div class="col-md-3">
+		                	  		<label for="inputAddressLine1">To</label>
+								  	<div class="input-group"> 
+								  	
+								    <div class="input-group-prepend">
+								      <span class="input-group-text"><i class="far fa-calendar"></i></span>
+								    </div>
+								    <input type="date" class="form-control" ng-model = "education.to">
+								</div>
+							</div>
+							<div class="col-md-6">
+		        	  			<label for="inputAddressLine1">Description</label>
+						  	
+							    <textarea name="description" class="form-control" rows="3" cols="46"placeholder="Write a short summary to describe your role(100 words max)" maxlength="400" ng-model = "exp.description"></textarea> 
+						  	</div>
+							
+						</div>
+							  
+						  	
+	            		
+						<button type="button" class="btn btn-primary px-4 float-right" ng-click="mainCtrl.removeChoice(education.id,'edu')" ng-if="education.id!=mainCtrl.edu_index">-</button>
+						<button type="button" class="btn btn-primary px-4 float-right" ng-click="mainCtrl.addNewChoice('edu')" ng-if="education.id===mainCtrl.edu_index">+</button>
+						<br clear="both">
+	            	</div>
+
+	            </section>
+
+   
+   				 <button class="btn btn-lg btn-primary" type="submit">Submit</button>
+                
+               
+                
+            </form>
+        </div>
     </div>
-    <!-- /section title -->
-
-    <!-- contact -->
-    <!-- /contact -->
-
-    <!-- contact -->
-   <div class="col-sm-4">
-      <div class="contact">
-        <h3>Mobile</h3>
-       <a href="tel: +919407077858"><i class="fa fa-phone" aria-hidden="true"></i>
- +919407077858</a>
-      </div>
-    </div>
-    <!-- /contact -->
-
-    <!-- contact -->
-    <div class="col-sm-4">
-      <div class="contact">
-        <h3>Email</h3>
-        <a href="mail:shadrul100@gmail.com " target="_blank"> <i class="fa fa-envelope" aria-hidden="true"></i>
-shadrul100@gmail.com</a>
-      </div>
-    </div>
-    <div class="col-sm-4">
-      <div class="contact">
-        <h3>Address</h3>
-        <i class="fa fa-map-marker" aria-hidden="true"></i>
-        	<p>1521, First Floor Bharat Sevashram Sangh, near Dena Bank, Wright Town, Jabalpur, Madhya Pradesh 482001</p>
-      </div>
-    </div>
-    <!-- /contact -->
-
-  </div>
-  <!-- /row -->
-
-	</div>
-	<!-- /container -->
-</div>
-
-		<!-- Map -->
-		<!-- <div id="map"></div> -->
-		<!-- /Map -->
-
-	<!-- /Contact -->
-
-
-<!-- Footer -->
-<ng-include src="'templates/includes/footer.html'"></ng-include>
+<p>{{mainCtrl.user.user_name}}</p>
+<p>{{mainCtrl.user.mobile}}</p>
+</div> 
 
 
 
-<script >
 
-	$(document).ready(function(){ 
-		 $('.owl-carousel').owlCarousel({
-    center: true,
-    items:2,
-    loop:true,
-    margin:10,
-    autoplay:true,
-    autoplayHoverPause:true,
-    responsive:{
-        600:{
-            items:4
-        }
-    }
-});	
+<!-- <script>
 
-	}) 
+var input = document.querySelector("#mobile");
+var iti = intlTelInput(input)
+	intlTelInput(input, {
+	    utilsScript: "/js/utils.js"
+	});
+	console.log(iti.getNumber());
 
-</script>
+</script> -->
